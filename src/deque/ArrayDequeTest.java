@@ -1,5 +1,6 @@
 package src.deque;
 
+import jh61b.junit.In;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -8,13 +9,13 @@ public class ArrayDequeTest {
 
     @Test
     public void testEmptySize() {
-        ArrayDeque L = new ArrayDeque();
+        ArrayDeque<Integer> L = new ArrayDeque<Integer>();
         assertEquals(0, L.size());
     }
 
     @Test
     public void testAddAndSize() {
-        ArrayDeque L = new ArrayDeque();
+        ArrayDeque<Integer> L = new ArrayDeque<Integer>();
         L.addLast(99);
         L.addLast(99);
         assertEquals(2, L.size());
@@ -23,27 +24,27 @@ public class ArrayDequeTest {
 
     @Test
     public void testAddAndGetLast() {
-        ArrayDeque L = new ArrayDeque();
+        ArrayDeque<Integer> L = new ArrayDeque<Integer>();
         L.addLast(99);
-        assertEquals(99, L.removeLast());
+        assertEquals(99, (int)L.removeLast());
         L.addLast(36);
-        assertEquals(36, L.removeLast());
+        assertEquals(36, (int) L.removeLast());
     }
 
 
     @Test
     public void testGetFirst() {
-        ArrayDeque L = new ArrayDeque();
+        ArrayDeque<Integer> L = new ArrayDeque<Integer>();
         L.addFirst(99);
-        assertEquals(99, L.get(0));
+        assertEquals(99, (int) L.get(0));
         L.addFirst(36);
-        assertEquals(36, L.get(0));
-        assertEquals(99, L.get(1));
+        assertEquals(36, (int) L.get(0));
+        assertEquals(99, (int) L.get(1));
     }
 
     @Test
     public void testGetFirstString() {
-        ArrayDeque L = new ArrayDeque();
+        ArrayDeque<String> L = new ArrayDeque<String>();
         L.addFirst("99");
         assertEquals("99", L.get(0));
         assertNotEquals(99, L.get(0));
@@ -54,26 +55,26 @@ public class ArrayDequeTest {
 
     @Test
     public void testGetLast() {
-        ArrayDeque L = new ArrayDeque();
+        ArrayDeque<Integer> L = new ArrayDeque<Integer>();
         L.addLast(22);
-        assertEquals(22, L.get(0));
+        assertEquals(22, (int)L.get(0));
         L.addLast(55);
-        assertEquals(55, L.get(1));
-        assertEquals(22, L.get(0));
+        assertEquals(55, (int)L.get(1));
+        assertEquals(22, (int)L.get(0));
     }
 
 
     @Test
     public void testRemove() {
-        ArrayDeque L = new ArrayDeque();
+        ArrayDeque<Integer> L = new ArrayDeque<Integer>();
         L.addLast(99);
-        assertEquals(99, L.get(0));
+        assertEquals(99, (int)L.get(0));
         L.addLast(36);
-        assertEquals(99, L.get(0));
+        assertEquals(99, (int)L.get(0));
         L.removeLast();
-        assertEquals(99, L.removeLast());
+        assertEquals(99, (int)L.removeLast());
         L.addLast(100);
-        assertEquals(100, L.removeLast());
+        assertEquals(100, (int)L.removeLast());
         assertEquals(0, L.size());
     }
 
@@ -82,7 +83,7 @@ public class ArrayDequeTest {
      */
     @Test
     public void testMegaInsert() {
-        ArrayDeque L = new ArrayDeque();
+        ArrayDeque<Integer> L = new ArrayDeque<Integer>();
         int N = 1000000;
         for (int i = 0; i < N; i += 1) {
             L.addLast(i);
@@ -95,7 +96,7 @@ public class ArrayDequeTest {
 
     @Test
     public void testResizeBigger() {
-        ArrayDeque L = new ArrayDeque();
+        ArrayDeque<Integer> L = new ArrayDeque<Integer>();
         for (int i = 0; i < 5; i += 1) {
             L.addFirst(i);
         }
@@ -105,20 +106,20 @@ public class ArrayDequeTest {
         }
 
         L.addLast(99);
-        assertEquals(99, L.get(L.size() - 1));
+        assertEquals(99, (int)L.get(L.size() - 1));
     }
 
     @Test
     public void testAddAndGetFirst() {
-        ArrayDeque L = new ArrayDeque();
+        ArrayDeque<Integer> L = new ArrayDeque<Integer>();
         L.addFirst(50);
-        assertEquals(50, L.get(0));
+        assertEquals(50, (int)L.get(0));
         assertNull(L.get(1));
     }
 
     @Test
     public void testResizeSmallerFirstOnly() {
-        ArrayDeque L = new ArrayDeque();
+        ArrayDeque<Integer> L = new ArrayDeque<Integer>();
 
         for (int i = 0; i < 9; i++) {
             L.addFirst(i);
@@ -133,7 +134,7 @@ public class ArrayDequeTest {
 
     @Test
     public void testResizeSmallerLastAdded() {
-        ArrayDeque L = new ArrayDeque();
+        ArrayDeque<Integer> L = new ArrayDeque<Integer>();
 
         for (int i = 0; i < 8; i++) {
             L.addFirst(i);
@@ -151,7 +152,7 @@ public class ArrayDequeTest {
 
     @Test
     public void testResizeSmallerLastBeforeFirst() {
-        ArrayDeque L = new ArrayDeque();
+        ArrayDeque<Integer> L = new ArrayDeque<Integer>();
         for (int i = 0; i < 14; i++) {
             L.addFirst(i);
         }
@@ -161,8 +162,8 @@ public class ArrayDequeTest {
         }
         assertEquals(L.size(), 4);
         assertEquals(L.getArrayLength(), 8);
-        assertEquals(L.get(0), 13);
-        assertEquals(L.get(L.size()-1), 10);
+        assertEquals((int)L.get(0), 13);
+        assertEquals((int)L.get(L.size()-1), 10);
     }
 
     @Test
