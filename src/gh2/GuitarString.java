@@ -1,11 +1,9 @@
-package gh2;
+package src.gh2;
 
-// TODO: uncomment the following import once you're ready to start this portion
 // import deque.Deque;
-// TODO: maybe more imports
 
-import deque.LinkedListDeque;
-import deque.ArrayDeque;
+import src.deque.LinkedListDeque;
+import src.deque.ArrayDeque;
 
 //Note: This file will not compile until you complete the Deque implementations
 public class GuitarString {

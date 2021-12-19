@@ -8,12 +8,14 @@ import static org.junit.Assert.*;
 public class ArrayDequeTest {
 
     @Test
+    /* Test empty */
     public void testEmptySize() {
         ArrayDeque<Integer> L = new ArrayDeque<Integer>();
         assertEquals(0, L.size());
     }
 
     @Test
+    /* Add two elements to the end of the Deque and check the size */
     public void testAddAndSize() {
         ArrayDeque<Integer> L = new ArrayDeque<Integer>();
         L.addLast(99);
@@ -23,6 +25,7 @@ public class ArrayDequeTest {
 
 
     @Test
+    /* Check that the Deque is correctly adding elements to the end of the Deque */
     public void testAddAndGetLast() {
         ArrayDeque<Integer> L = new ArrayDeque<Integer>();
         L.addLast(99);
@@ -33,6 +36,7 @@ public class ArrayDequeTest {
 
 
     @Test
+    /* Check that the Deque is correctly adding elements to the start of the Deque */
     public void testGetFirst() {
         ArrayDeque<Integer> L = new ArrayDeque<Integer>();
         L.addFirst(99);
@@ -43,6 +47,8 @@ public class ArrayDequeTest {
     }
 
     @Test
+    /* Check that the Deque is correctly adding elements to the start of the Deque
+    * Element added is of type String */
     public void testGetFirstString() {
         ArrayDeque<String> L = new ArrayDeque<String>();
         L.addFirst("99");
@@ -65,6 +71,7 @@ public class ArrayDequeTest {
 
 
     @Test
+    /* Test to check the remove method is working and updating the size of the Deque */
     public void testRemove() {
         ArrayDeque<Integer> L = new ArrayDeque<Integer>();
         L.addLast(99);

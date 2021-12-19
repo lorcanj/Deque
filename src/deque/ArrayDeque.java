@@ -4,6 +4,9 @@ import java.util.Iterator;
 
 public class ArrayDeque<Type> implements Deque<Type>, Iterable<Type> {
 
+    /**
+     * Inner class that provides an iterator to loop via for each syntax
+     */
     private class ArrayDequeIterator implements Iterator<Type> {
         private int pos;
         private int counter;
@@ -49,6 +52,9 @@ public class ArrayDeque<Type> implements Deque<Type>, Iterable<Type> {
     }
 
     @Override
+    /**
+     * Returns true if Deque has same contents in the same relative order
+     */
     public boolean equals(Object o) {
         if (o == null) {return false;}
         if (this == o) {return true;}
@@ -60,6 +66,11 @@ public class ArrayDeque<Type> implements Deque<Type>, Iterable<Type> {
         return false;
     }
 
+    /**
+     * Takes a list and checks whether
+     * @param listToCheck the other Deque to check against
+     * @return true if both Deques contain the same elements in the same order
+     */
     private boolean checkDequeContents(ArrayDeque<Type> listToCheck) {
         if (size != listToCheck.size()) {return false;}
 
@@ -101,6 +112,11 @@ public class ArrayDeque<Type> implements Deque<Type>, Iterable<Type> {
         capactiy = (double) size / items.length;
     }
 
+    /**
+     * Adds element x to the end of the deque and increases the size
+     * If the Deque is full, then resizes with double the capacity
+     * @param x
+     */
     public void addLast(Type x) {
         if (x == null) {
             return;
@@ -126,8 +142,10 @@ public class ArrayDeque<Type> implements Deque<Type>, Iterable<Type> {
 
     public int getArrayLength() { return items.length; }
 
+    /**
+     * Prints the elements of the Deque
+     */
     public void printDeque() {
-
         for (int i = 0; i < items.length; i++) {
             if (items[i] == null) {continue;}
             System.out.print(items[i].toString() + ' ');
@@ -136,9 +154,9 @@ public class ArrayDeque<Type> implements Deque<Type>, Iterable<Type> {
     }
 
     /**
-     * Want to remove the item at the front of the queue
+     * Removes the element at the start of the Deque
      * The item at the front will have an index of (nextFirst-1) % items.length
-     * @return the Type stored at the front of the queue
+     * @return the element stored at the front of the queue
      */
     public Type removeFirst() {
         int circular_index = Math.floorMod(nextFirst - 1, items.length);
@@ -153,6 +171,10 @@ public class ArrayDeque<Type> implements Deque<Type>, Iterable<Type> {
         return toReturn;
     }
 
+    /**
+     * Removes the element at the end of the queue
+     * @return the element at the end of the queue
+     */
     public Type removeLast() {
         int circular_index = (nextLast + 1) % items.length;
         Type toReturn = items[circular_index];
@@ -168,7 +190,7 @@ public class ArrayDeque<Type> implements Deque<Type>, Iterable<Type> {
 
     /**
      * returns the item in the ith element where element 0 is the front and element items.length - 1 is the back
-     * @param i
+     * @param i the index which the user wants to get
      * @return the element at index i where 0 is the front
      */
     public Type get(int i) {
@@ -192,13 +214,12 @@ public class ArrayDeque<Type> implements Deque<Type>, Iterable<Type> {
     }
 
     /**
-     * If the array has had more items added to it than the capacity allows, then double the size of the array,
-     * copy all of the items
+     * If the array has had more items added to it than the capacity allows,
+     * then double the size of the array,copying all of the items
      */
     public void resizeBigger() {
         Type[] biggerArray = (Type[]) new Object[items.length * 2];
         boolean movedOnlyOneType = false;
-        // is correct because for this function to hit, the array will need to be full
         if (nextFirst == 0 && nextLast == items.length - 1) {
             movedOnlyOneType = true;
         }
@@ -206,6 +227,11 @@ public class ArrayDeque<Type> implements Deque<Type>, Iterable<Type> {
         items = biggerArray;
     }
 
+    /**
+     * Copies elements to the bigger array
+     * @param biggerArray
+     * @param movedOnlyOneType
+     */
     private void copyArrayBigger(Type[] biggerArray, boolean movedOnlyOneType) {
         if (movedOnlyOneType) {
             System.arraycopy(items, 0, biggerArray, 0, items.length);
@@ -221,6 +247,10 @@ public class ArrayDeque<Type> implements Deque<Type>, Iterable<Type> {
             }
         }
 
+    /**
+     * Method is called if the capacity of tbe array is <= 25%
+     * Will reduce the size of the array by 50% and copy over the elements
+     */
     public void resizeSmaller() {
         Type[] smallerArray = (Type[]) new Object[items.length / 2];
         copyArraySmaller(smallerArray);
@@ -229,6 +259,12 @@ public class ArrayDeque<Type> implements Deque<Type>, Iterable<Type> {
         items = smallerArray;
     }
 
+    /**
+     * Copies the elements of the array to the smaller array
+     * Ensures invariant that element at end of old array is at the start of the new
+     * smaller array
+     * @param smallerArray
+     */
     private void copyArraySmaller(Type[] smallerArray) {
         if (nextLast > nextFirst) {
             if (nextLast != (items.length) - 1){
@@ -241,16 +277,6 @@ public class ArrayDeque<Type> implements Deque<Type>, Iterable<Type> {
         } else {
             System.arraycopy(items, nextLast + 1, smallerArray, 0, nextFirst - 1 - nextLast);
         }
-    }
-
-    public void resize(double factor) {
-        int newArraySize = (int) (size * factor);
-        Type[] biggerArray = (Type[]) new Object[newArraySize];
-        System.arraycopy(items, 0, biggerArray, 0, size);
-        items = biggerArray;
-        size = size + 1;
-
-        capactiy = (double) size / newArraySize;
     }
 
 }

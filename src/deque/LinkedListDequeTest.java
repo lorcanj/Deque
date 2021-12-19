@@ -35,7 +35,7 @@ public class LinkedListDequeTest {
     }
 
     @Test
-    /** Adds an item, then removes an item, and ensures that dll is empty afterwards. */
+    /* Adds an item, then removes an item, and ensures that dll is empty afterwards. */
     public void addRemoveTest() {
 
         LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
@@ -136,6 +136,7 @@ public class LinkedListDequeTest {
     }
 
     @Test
+    /* Test that the implemented iterator works for the LinkedListDeque */
     public void testIterator() {
         LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
         for (int i = 0; i < 3; i++) {
@@ -149,6 +150,8 @@ public class LinkedListDequeTest {
     }
 
     @Test
+    /** Test to check that the equals method is correctly identifying Deques that are in
+    * the same order and are equal */
     public void testEquals() {
         LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
         LinkedListDeque<Integer> lld2 = new LinkedListDeque<Integer>();
