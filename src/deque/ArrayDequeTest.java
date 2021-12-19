@@ -1,4 +1,4 @@
-package deque;
+package src.deque;
 
 import org.junit.Test;
 
